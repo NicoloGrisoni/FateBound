@@ -1,0 +1,39 @@
+PAGINE
+1- Starting page: 
+      presentazione/introduzione al sito con descrizioni varie
+      funzionalità di login, registrazione
+      giocare senza accesso 
+
+2- Login/Registrazione: 
+      pagine semplici con auth0 API per accedere e registrarsi al sito così da poter salvare informazioni sulle storie
+      informazioni di username password mail necessarie
+
+3- Home Page: 
+      vedo tutte le storie presenti nel database
+      posso selezionare una storia per vederne i dettagli e giocare
+      posso vedere le impostazioni di tema, musica se effettivamente sarà presente, e altre cose
+
+4- Impostazioni: 
+      da capire cosa mettere ma sicuro presente ad esempio il tema del sito
+
+5- Pagina profilo: 
+      visualizzare e possibilità di modificare informazioni 
+
+6- Dettagli storia: 
+      vedo la descrizione generale, numero di capitoli ecc riguardo alla storia
+      se presente un'interazione precedente, possibilità di ripartire da quel punto
+
+7- Gioco: 
+      pagina che cambia mostrando man mano i capitoli corretti, aggiornando quindi le info ecc ma sempre stessa pagina
+      se è il capitolo finale allora mostrare un bottone di termina la storia che mostra un riepilogo con:
+         tempo impiegato, finali completati rispetto al totale presente nella storia ecc
+      magari exp guadagnati se verranno implementati gli exp come punti
+
+
+
+ULTERIORI INFORMAZIONI 
+1- Formato per la comunicazione: JSON
+2- Ciascuna pagina AJAX dedicata ad un singolo servizio e, se servisse, gestione dell'API relativa a quel servizio. 
+ad esempio il servizio che permette di ottenere un certo capitolo deve gestire la API di Unsplash per ottenere anche l'immagine 
+relativa alla descrizione e restituirla nel JSON per mostrarla all'utente 
+3- Valutare come abbellimento di aggiungere badge relativi ai traguardi
