@@ -14,21 +14,30 @@ PAGINE
       posso vedere le impostazioni di tema, musica se effettivamente sarà presente, e altre cose
 
 4- Impostazioni: 
-      da capire cosa mettere ma sicuro presente ad esempio il tema del sito
+      opzioni tra cui le seguenti:
+         selezione del tema dell'app
+         attivazione della musica delle storie (in caso di funzionalità presente)
+         visualizzare informazioni sull'app - About FateBound
+         visualizzare informazioni sull'autore - About me
 
 5- Pagina profilo: 
-      visualizzare e possibilità di modificare informazioni 
+      visualizzare e possibilità di modificare informazioni del profilo (solo per informazioni modificabili):
+         username
+         password
+         mail
+         foto profilo
+         badge ottenuti tramite il raggiungimento di alcuni finali di una certa storia (se implementati)
 
 6- Dettagli storia: 
-      vedo la descrizione generale, numero di capitoli ecc riguardo alla storia
-      se presente un'interazione precedente, possibilità di ripartire da quel punto
+      visualizzare la descrizione generale della storia, il numero di capitoli da cui è composta ed eventuali altre info della storia
+      se presente un'interazione precedente ad un capitolo non finale, possibilità di ripartire da quel punto, 
+      ricominciare la storia
 
 7- Gioco: 
-      pagina che cambia mostrando man mano i capitoli corretti, aggiornando quindi le info ecc ma sempre stessa pagina
-      se è il capitolo finale allora mostrare un bottone di termina la storia che mostra un riepilogo con:
+      pagina che cambia mostrando man mano i capitoli, aggiornando quindi le info ecc ma sempre stessa pagina
+      se è un capitolo finale allora termina la storia che mostra un riepilogo della partita con:
          tempo impiegato, finali completati rispetto al totale presente nella storia ecc
       magari exp guadagnati se verranno implementati gli exp come punti
-
 
 
 ULTERIORI INFORMAZIONI 
