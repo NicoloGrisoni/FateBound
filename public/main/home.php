@@ -1,0 +1,19 @@
+<?php 
+    /**
+     * This is the home page of the site:
+     *  the user can see all the stories he can play (all the stories recorded into the database) (doesn't need the access)
+     *  the user can go to the settings of the app to change the theme or see more information about me or the app (doesn't need the access)
+     *  whether the user has access into the app, he can also see some more buttons such as the one to visualize his profile
+     */
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body>
+    
+</body>
+</html>
