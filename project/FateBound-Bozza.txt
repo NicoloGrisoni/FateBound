@@ -42,7 +42,5 @@ PAGINE
 
 ULTERIORI INFORMAZIONI 
 1- Formato per la comunicazione: JSON
-2- Ciascuna pagina AJAX dedicata ad un singolo servizio e, se servisse, gestione dell'API relativa a quel servizio. 
-ad esempio il servizio che permette di ottenere un certo capitolo deve gestire la API di Unsplash per ottenere anche l'immagine 
-relativa alla descrizione e restituirla nel JSON per mostrarla all'utente 
+2- Ciascuna pagina AJAX dedicata ad un singolo servizio
 3- Valutare come abbellimento di aggiungere badge relativi ai traguardi
