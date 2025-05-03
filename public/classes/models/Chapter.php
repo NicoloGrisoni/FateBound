@@ -8,4 +8,22 @@
      *      3- the description of the chapter
      *      4- a flag which indicate whether this chapter is a final chapter or not
      */
+
+    class Chapter {
+        private $ID;
+        private $IDStory;
+        private $title;
+        private $description;
+        private $isFinal;
+
+        public function __construct($ID, $IDStory, $title, $description, $isFinal) {
+            //Check if all the value which cannot be null are correctly passed to the fuction
+            //Check if all the value have the type expected
+            $this->ID = $ID;
+            $this->IDStory = $IDStory;
+            $this->title = $title;
+            $this->description = $description;
+            $this->isFinal = $isFinal;
+        }
+    }
 ?>
