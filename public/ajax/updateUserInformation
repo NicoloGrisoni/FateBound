@@ -3,4 +3,43 @@
      * This service return a json which contains the result of the update required by the user
      * It requires the user's ID and the information to update
      */
+
+    require_once("../classes/database.php");
+
+    if (!isset($_SESSION)) {
+        session_start();
+    }
+
+    $information = [];
+    if (!isset($_SESSION["IDUser"]) || !isset($_SESSION["authToken"])) {
+        $information["status"] = "Access problem";
+        $information["message"] = "Cannot access, missing authorization";
+        return json_encode($information);
+    }
+
+
+    if (!isset($_GET["newUsername"]) && !isset($_GET["newPassword"]) && !isset($_GET["newProfilePicture"])) {
+        $information["status"] = "Failed";
+        $information["message"] = "Missing information: at least one info must be updated";
+    } else {
+        $db = Database::GetInstance();
+        $resultUpdate = false;
+
+        if (isset($_GET["newUsername"])) {
+            $resultUpdate = $db->UpdateUsername($_SESSION["IDUser"],$_GET["newUsername"]);
+        } else if (isset($_GET["newPassword"])) {
+            $resultUpdate = $db->UpdatePassword($_SESSION["IDUser"],$_GET["newPassword"]);
+        } else if (isset($_GET["newProfilePicture"])) {
+            $resultUpdate = $db->UpdateProfilePicture($_SESSION["IDUser"], $_GET["newProfilePicture"]);
+        }
+
+        if ($resultUpdate) {
+            $information["status"] = "Success";
+        } else {
+            $information["status"] = "Failed";
+            $information["message"] = "Problem during the execution of the operation requested";
+        }
+    }
+
+    return json_encode($information);
 ?>

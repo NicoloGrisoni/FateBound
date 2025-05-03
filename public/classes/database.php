@@ -71,7 +71,12 @@
             $stmt->bind_param("ss", $username, $password);
             $stmt->execute();
 
-            return $stmt->get_result();
+            $result = $stmt->get_result();
+            if ($result) {
+                return $this->conn->insert_id;
+            } else {
+                return -1;
+            }
         }
 
         //Check whether the username is already taken by another user 
@@ -310,10 +315,12 @@
         }
 
         //Last interaction made by a user with a story
-        public function GetInteractionWithStory($idUser) {
-            $query = "SELECT * FROM ChaptersInteracted WHERE user=?";
+        public function GetInteractionWithStory($idUser, $idStory) {
+            $query = "SELECT * FROM ChaptersInteracted WHERE user=? AND chapter IN (
+                SELECT * FROM Chapters WHERE story=?
+            )";
             $stmt = $this->conn->prepare($query);
-            $stmt->bind_param("i", $idUser);
+            $stmt->bind_param("ii", $idUser, $idStory);
             $stmt->execute();
 
             $result = $stmt->get_result();

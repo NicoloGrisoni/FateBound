@@ -1,8 +1,10 @@
 <?php 
     /**
-     * This service return a json which contains the result of the logout the user has required
+     * This service return a json which contains the result of the elimination of the profile picture requested
      * It requires the user's ID
      */
+
+    require_once("../classes/database.php");
 
     if (!isset($_SESSION)) {
         session_start();
@@ -15,9 +17,13 @@
         return json_encode($information);
     }
 
-    unset($_SESSION["IDUser"], $_SESSION["authToken"]);
-    
-    $information["status"] = "Success";
-    $information["message"] = "Logout successfully done";
+    $db = Database::GetInstance();
+    $delete = $db->DeleteProfilePicture($_SESSION["IDUser"]);
+    if ($delete) {
+        $information["status"] = "Success";
+    } else {
+        $information["status"] = "Failed";
+    }
+
     return json_encode($information);
 ?>
