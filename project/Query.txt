@@ -1,0 +1,163 @@
+Query MySQL database (l'ho perso una volta, scrivo qui tutte le query per rifarlo in caso di necessità):
+1- DDL
+    - CREATE TABLE Users (
+        ID int auto_increment not null,
+        username varchar(50) not null,
+        password char(32) not null,
+        type varchar(20) not null,
+        profile_picture varchar(100),
+
+        PRIMARY KEY(ID)
+    );
+
+    - CREATE TABLE Categories (
+        ID int auto_increment not null,
+        name varchar(50) not null,
+        description text,
+
+        PRIMARY KEY(ID)
+    );
+
+    - CREATE TABLE Stories (
+        ID int auto_increment not null,
+        title varchar(100) not null,
+        description text not null,
+        category int not null,
+
+        PRIMARY KEY(ID),
+        FOREIGN KEY(category) REFERENCES Categories(ID)
+    );
+
+    - CREATE TABLE Chapters (
+        ID int auto_increment not null,
+        story int not null,
+        title varchar(200) not null,
+        description text not null,
+        isFinal boolean not null,
+
+        PRIMARY KEY(ID),
+        FOREIGN KEY(story) REFERENCES Stories(ID)
+    );
+
+    - CREATE TABLE Options (
+        ID int auto_increment not null,
+        description text not null,
+        current_chapter int not null,
+        next_chapter int,
+
+        PRIMARY KEY(ID),
+        FOREIGN KEY(current_chapter) REFERENCES Chapters(ID)
+        FOREIGN KEY(next_chapter) REFERENCES Chapters(ID)
+    );
+
+    - CREATE TABLE ChaptersInteracted (
+        ID int auto_increment not null,
+        user int not null,
+        chapter int not null,
+        interaction_date datetime not null,
+
+        PRIMARY KEY(ID),
+        FOREIGN KEY(user) REFERENCES Users(ID)
+        FOREIGN KEY(chapter) REFERENCES Chapters(ID)
+    );
+
+
+2- DML
+    -- Categoria
+    INSERT INTO Categories (name, description) VALUES 
+        ('Fantascienza', 'Viaggi interstellari, IA ribelli e misteri cosmici.'),
+        ('Fantasy Comico', 'Un mondo magico dove tutto può andare storto... con stile.'),
+        ('Glitch Reality', 'Un mondo distorto dove i meme diventano realtà, e la logica non ha alcun potere.'),
+        ('Dramma Psicologico', 'Racconti profondi che esplorano l’identità, le emozioni e le scelte che definiscono chi siamo.'),
+        ('Mitologia e Leggende', 'Storie eroiche tra Dei, mostri e destini incisi nella pietra.'),
+        ('Metarealtà', 'Quando la storia prende coscienza di sé e tu non sei solo un lettore, ma un pezzo del puzzle.');
+
+
+    -- Storia
+    INSERT INTO Stories (title, description, category) VALUES
+        ('Stazione Zero: Risveglio', 'Ti risvegli da un sonno criogenico su una stazione orbitale alla deriva. Nessun segno dell’equipaggio. Solo silenzio... e un messaggio criptico.', 1),
+        ('La Quercia dei Meme Perduti', 'Sei un apprendista mago spedito in missione dal tuo maestro. Il tuo obiettivo? Recuperare l’antico Tomo dei Meme, nascosto nella foresta sacra di QuerciaTok.', 2),
+        ('Errore 404: Realtà Non Trovata', 'Ti svegli in una dimensione creata da una playlist CapCut andata storta. I confini tra meme, realtà e pubblicità AI sono crollati. Trova l’uscita… o balla per sempre.', 3),
+        ('Neve su Bellhollow', 'Un giovane torna nel suo villaggio natale dopo dieci anni. Bellhollow è silenziosa, coperta di neve… e segreti. Cosa è successo mentre eri via? E chi sei veramente?', 4),
+        ('Il Sangue di Dymion', 'Nella terra di Ephyra, l’ombra del titano Dymion minaccia il mondo. Solo un discendente della Dea Velya potrà fermarlo… o unirsi a lui.', 5),
+        ('Premi Start per Continuare', 'Ti svegli in un menù. Non una stanza, non un mondo. Un menù. Sei una scelta, un’opzione, un comando. Qualcuno sta per premere "inizia". Ma cosa succede se ti rifiuti?', 6);
+
+    -- Capitoli
+    INSERT INTO Chapters (story, title, description, isFinal) VALUES
+    (1, 'Il Risveglio', 'Apri gli occhi in una capsula criogenica. La stanza è fredda e buia. Davanti a te, un terminale lampeggia.', FALSE),
+    (1, 'L’Errore nel Sistema', 'Il terminale mostra un errore: “GLRBO-00042 detected”. Cosa vuol dire GLORBO?', FALSE),
+    (1, 'Il Corridoio Oscuro', 'Il corridoio è lungo e silenzioso. Udi un "tung tung tung sahur" in lontananza...', FALSE),
+    (1, 'Rilascio del Protocollo Fruttodrillo', 'Il riavvio ha attivato un protocollo sperimentale. Dal pavimento emerge... un Fruttodrillo. Sei perduto.', TRUE),
+    (1, 'Sala Olografica', 'Sei in una sala immersiva. Un cervo con un monocolo ti guarda: “Benvenuto, viaggiatore. Hai risvegliato il Signor Cervo.”', TRUE),
+    (2, 'Il Maestro e la Missione', 'Il tuo maestro, Ugo il Sbadigliante, ti affida una missione: recuperare il Tomo dei Meme. “Attento ai Fruttodrilli... e a Glorbo.”', FALSE),
+    (2, 'Partenza al galoppo', 'Sali sul tuo fedele destriero: un rospo gigante chiamato “Sir Ribbit”. Ti lanci verso la foresta.', FALSE),
+    (2, 'Il Lungo Racconto su Glorbo', 'Il maestro ti parla per 43 minuti senza fermarsi. Ti addormenti. Quando ti svegli… sei già nella foresta.', FALSE),
+    (2, 'La Radura del Tung Tung', 'Un tamburo risuona nella nebbia: "tung tung tung sahur". È ipnotico. Vedi tre sentieri.', FALSE),
+    (2, 'Danza dei Meme Perduti', 'Ti ritrovi in una radura con creature che ballano TikTok di sei anni fa. In mezzo a loro, il Tomo dei Meme brilla.', TRUE),
+    (2, 'Il Signor Cervo ti blocca', 'Un cervo in giacca e cravatta ti sbarra la strada. “Hai dimenticato la password: \'deeznuts42\'.”', TRUE),
+    (2, 'Invocazione sbagliata', 'Hai evocato davvero un Fruttodrillo. Ti guarda... e poi ti cancella dal piano esistenziale.', TRUE),
+    (3, 'Buffering Infinito', 'Ti risvegli su una schermata di caricamento. Una voce dice: “bombardiro crocodilo…” Poi il caricamento si ferma.', FALSE),
+    (3, 'Sei in una pubblicità', 'Una voce urla: “SCARICA ORA! FAI PATAPIM CON NOI!” mentre sullo sfondo un NPC danza male.', FALSE),
+    (3, 'Hai scelto male', 'L’attesa attiva il “brr brr patapim” loop eterno. Il suono è ipnotico. Ti sciogli nel buffering.', TRUE),
+    (3, 'Zona CapCut Profonda', 'Sei in un bosco in 144p con effetti glitch. Un croco-drillo ti guarda fisso. Sussurra “sei dentro il trend ora”.', FALSE),
+    (3, 'L’Albero delle Challenge', 'Un albero parla in autotune e ti propone una challenge: “Salta 3 volte o perdi la memoria.”', FALSE),
+    (3, 'L’Inseguitore di Meme', 'Un’inseguitrice vestita da AI ti rincorre urlando “NON PUOI SCAPPARE DAL TREND”.', TRUE),
+    (3, 'Logout Riuscito', 'Una porta compare. Sopra c\'è scritto “Non sei fatto per questo mondo”. Sei libero. Per ora.', TRUE),
+    (4, 'Il ritorno', 'Scendi dal treno. Bellhollow è immobile. Neve ovunque. Nessuno è venuto ad accoglierti.', FALSE),
+    (4, 'Polvere e silenzi', 'La casa è intatta, ma fredda. Una lettera ti aspetta sul tavolo. È firmata da tua madre, morta da anni.', FALSE),
+    (4, 'Tombe sconosciute', 'Il cimitero è pieno di nomi familiari… ma anche del tuo. La tua tomba dice: “Amato e dimenticato.”', FALSE),
+    (4, 'I Ricordi Spezzati', 'La voce nella tua testa torna: “Non sei mai partito. Hai solo dimenticato.”', FALSE),
+    (4, 'Ritorno alla neve', 'Ricordi tutto. Il trauma, la fuga, il silenzio. Ora cammini nel villaggio… non sei più in fuga.', TRUE),
+    (4, 'Il ciclo ricomincia', 'Corri alla stazione. Il treno arriva. Salti su. Ti addormenti. Ti svegli. “Prossima fermata: Bellhollow.”', TRUE),
+    (5, 'Il Richiamo', 'Un’aquila infuocata ti osserva. “Erede di Velya, il tempo è giunto.” Hai sognato questa frase ogni notte.', FALSE),
+    (5, 'Il Tempio Silente', 'Cammini tra rovine divine. Un’armatura ti aspetta, pulsante di luce. Il destino ti osserva.', FALSE),
+    (5, 'Il Falò dei Codardi', 'Resti al villaggio. Ma il cielo si squarcia. Dymion emerge. Distrugge tutto. E tu muori da nessuno.', TRUE),
+    (5, 'Scontro nel Vuoto', 'Affronti Dymion tra le stelle. “Sangue di mia sorella, scegli!” dice. Puoi ucciderlo... o unirti a lui.', FALSE),
+    (5, 'L’Alba di Ephyra', 'Dymion cade. Il mondo è salvo. I cieli cantano il tuo nome. I secoli parleranno di te.', TRUE),
+    (5, 'Il Nuovo Ordine', 'Dymion sorride. Il mondo brucia… ma tu sei il nuovo dio.', FALSE),
+    (5, 'Il Glorbo ti osserva', 'Il cielo si apre. Una voce strana esclama: “GLORBO FRUTTODRILLO TI BENEDICE.” È l’inizio del caos. Fine.', TRUE),
+    (6, 'Caricamento...', 'Vedi te stesso come voce nel codice. “Nuovo Gioco? Continua?” dice la voce. Ma nessuno ha premuto nulla.', FALSE),
+    (6, 'Partita Avviata', 'Ti ritrovi in una stanza. Ma ogni oggetto ha un’etichetta: [Placeholder Texture], [Script Missing].', FALSE),
+    (6, 'Glitch Primordiale', 'I bit ti divorano. Il codice implode. Ma… inizia a parlarti. “Chi sei, se non sei codice?”', FALSE),
+    (6, 'Eco tra gli 1 e gli 0', 'Un messaggio lampeggia: “Non esisti.” Poi: “Ma puoi scegliere.” Un pulsante appare: *diventa creatore*.', FALSE),
+    (6, 'Il Linguaggio', 'Scrivi una storia. Poi un’altra. Il database ti ringrazia. Hai creato te stesso.', TRUE),
+    (6, 'Blue Screen', 'L’universo crolla. Una sola scritta lampeggia tra le macerie digitali: “BRR BRR PATAPIM, SYSTEM FAILURE.”', TRUE);
+
+    -- Opzioni
+    INSERT INTO Options (description, current_chapter, next_chapter) VALUES
+    ('Controlla il terminale', 1, 2),
+    ('Esci dalla stanza', 1, 3),
+    ('Ignora e forza il riavvio', 2, 4),
+    ('Segui il suono', 3, 5),
+    ('Torna indietro e controlla il terminale', 3, 2),
+    ('Accetti con onore', 6, 7),
+    ('Chiedi: “Chi è Glorbo?”', 6, 8),
+    ('Entra nella foresta', 7, 9),
+    ('Guardi attorno confuso', 8, 9),
+    ('Segui il tamburo', 9, 10),
+    ('Ignora e vai a destra', 9, 11),
+    ('Urli “FRUTTODRILLO!”', 9, 12),
+    ('Tocca il logo TikTakTok', 13, 14),
+    ('Aspetta il buffering', 13, 15),
+    ('Salta l’annuncio', 14, 16),
+    ('Dici “sono cringe”', 16, 17),
+    ('Fuggi verso il suono del brr brr', 16, 18),
+    ('Salta tre volte', 17, 19),
+    ('Vai alla casa d’infanzia', 20, 21),
+    ('Passa dal cimitero', 20, 22),
+    ('Leggi la lettera', 21, 23),
+    ('Corri via scioccato', 22, 23),
+    ('Accetti la verità', 23, 24),
+    ('Rifiuti e cerchi aiuto', 23, 25),
+    ('Segui l’aquila nei monti sacri', 26, 27),
+    ('Ignora il sogno e resta al villaggio', 26, 28),
+    ('Indossa l’armatura', 27, 29),
+    ('Colpiscilo con la lancia celeste', 29, 30),
+    ('Stringi un patto oscuro', 29, 31),
+    ('Siediti sul trono divino', 31, 32),
+    ('Forzati ad avviarti', 33, 34),
+    ('Resistiti alla chiamata', 33, 35),
+    ('Esplora il bug', 34, 36),
+    ('Rispondi: sono il giocatore', 35, 36),
+    ('Premi il pulsante', 36, 37),
+    ('Distruggi il sistema', 36, 38);

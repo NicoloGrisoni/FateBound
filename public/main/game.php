@@ -22,6 +22,8 @@
     />
 
     <link rel="stylesheet" href="../build/tailwind.css"/>
+
+    <script src="../js/game.js"></script>
 </head>
 <body>
     <!-- 
@@ -33,5 +35,12 @@
 
         Eventually there would be also some other objects in order to make the graphic better
     -->
+
+    <img src="" alt="not-found" id="image"><br>
+    <p id="title"></p><br>
+    <p id="description"></p><br>
+    <div id="options">
+
+    </div>
 </body>
 </html>

@@ -21,6 +21,8 @@
   />
 
   <link rel="stylesheet" href="../build/tailwind.css"/>
+
+  <script src="../js/registration.js"></script>
 </head>
 <body>
   <!-- 
@@ -31,5 +33,13 @@
 
     Eventually there would be also some other objects in order to make the graphic better
   -->
+
+  <label for="username">Username: </label>
+  <input type="text" id="username"><br>
+
+  <label for="password">Password: </label>
+  <input type="text" id="password"><br>
+
+  <button onclick="Registration()">Registration</button>
 </body>
 </html>
