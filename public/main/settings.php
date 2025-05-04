@@ -11,6 +11,11 @@
     <title>Settings</title>
 </head>
 <body>
-    
+    <!-- 
+        What's needed:
+        - div to display the settings the user can modify such as the theme or the logout
+
+        Eventually there would be also some other objects in order to make the graphic better
+    -->
 </body>
 </html>

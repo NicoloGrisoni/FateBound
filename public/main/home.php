@@ -14,6 +14,12 @@
     <title>Home</title>
 </head>
 <body>
-    
+    <!-- 
+        What's needed:
+        - navbar to show 'FateBound', the name of the site, and some button to reach pages such as settings or profile
+        - some div to display all the stories recorded into the database, one div dedicated to one story
+
+        Eventually there would be also some other objects in order to make the graphic better
+    -->
 </body>
 </html>

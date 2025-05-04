@@ -16,6 +16,14 @@
     <title>Game</title>
 </head>
 <body>
-    
+    <!-- 
+        What's needed:
+        - img to show the image obtained by the Unsplash API based on the title of the current chapter
+        - p/labels to display the title of the current chapter
+        - p/labels to display the description (if it's setted) of the current chapter
+        - div to display the options related to the current chapter, one div dedicated to one option
+
+        Eventually there would be also some other objects in order to make the graphic better
+    -->
 </body>
 </html>

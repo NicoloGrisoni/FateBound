@@ -15,6 +15,13 @@
     <title>Registration</title>
 </head>
 <body>
-    
+  <!-- 
+    What's needed:
+      - input text for the username
+      - input password for the password
+      - button for doing the registration
+
+    Eventually there would be also some other objects in order to make the graphic better
+  -->
 </body>
 </html>
