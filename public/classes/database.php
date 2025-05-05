@@ -66,13 +66,13 @@
         //Registration 
         public function Registration($username, $password) {
             //REMEMBER: verify the type of the variable passed to the function
-            $query = "INSERT INTO Users (username, password, type) VALUES (?, ?, user);";
+            $query = "INSERT INTO Users (username, password, type) VALUES (?, ?, 'user');";
             $stmt = $this->conn->prepare($query);
             $stmt->bind_param("ss", $username, $password);
             $stmt->execute();
 
             $result = $stmt->get_result();
-            if ($result) {
+            if ($result === true) {
                 return $this->conn->insert_id;
             } else {
                 return -1;
@@ -88,7 +88,7 @@
             $stmt->execute();
 
             $result = $stmt->get_result();
-            if (!$result) {
+            if ($result === false) {
                 return false;
             } else {
                 return $result->num_rows == 1;

@@ -3,9 +3,18 @@
  */
 
 async function DoLogin() {
-    const username = document.getElementById("username").value, password = document.getElementById("password");
-    const url = `../ajax/loginManager.php?username=${username}&password=${password}`;
+    const username = document.getElementById("username").value, password = document.getElementById("password").value;
+    const url = `../ajax/loginManager.php?username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`;
 
-    let response = await CallService(url);
-    console.log(response);
+    try {
+        let encodedUrl = encodeURI(url)
+        let response = await fetch(encodedUrl);
+
+        if (response.ok) {
+            let json = await response.json();
+            console.log(json);
+        } else {
+        }
+    } catch (error) {
+    }
 }

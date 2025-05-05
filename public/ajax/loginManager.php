@@ -14,7 +14,7 @@
     if (!isset($_GET["username"]) || !isset($_GET["password"])) {
         $information["status"] = "Information problem";
         $information["message"] = "Missing information of username or password";
-        return json_encode($information);
+        echo json_encode($information);
     }
 
     $db = Database::GetInstance();
@@ -27,5 +27,5 @@
         $information["message"] = "Problem during the execution of the operation requested";
     }
 
-    return json_encode($information);
+    echo json_encode($information);
 ?>

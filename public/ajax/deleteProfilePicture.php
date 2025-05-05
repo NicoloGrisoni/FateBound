@@ -14,7 +14,7 @@
     if (!isset($_SESSION["IDUser"]) || !isset($_SESSION["authToken"])) {
         $information["status"] = "Access problem";
         $information["message"] = "Cannot access, missing authorization";
-        return json_encode($information);
+        echo json_encode($information);
     }
 
     $db = Database::GetInstance();
@@ -25,5 +25,5 @@
         $information["status"] = "Failed";
     }
 
-    return json_encode($information);
+    echo json_encode($information);
 ?>

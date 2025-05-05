@@ -1,6 +1,6 @@
 Query MySQL database (l'ho perso una volta, scrivo qui tutte le query per rifarlo in caso di necessità):
 1- DDL
-    - CREATE TABLE Users (
+    CREATE TABLE Users (
         ID int auto_increment not null,
         username varchar(50) not null,
         password char(32) not null,
@@ -10,7 +10,7 @@ Query MySQL database (l'ho perso una volta, scrivo qui tutte le query per rifarl
         PRIMARY KEY(ID)
     );
 
-    - CREATE TABLE Categories (
+    CREATE TABLE Categories (
         ID int auto_increment not null,
         name varchar(50) not null,
         description text,
@@ -18,7 +18,7 @@ Query MySQL database (l'ho perso una volta, scrivo qui tutte le query per rifarl
         PRIMARY KEY(ID)
     );
 
-    - CREATE TABLE Stories (
+    CREATE TABLE Stories (
         ID int auto_increment not null,
         title varchar(100) not null,
         description text not null,
@@ -28,7 +28,7 @@ Query MySQL database (l'ho perso una volta, scrivo qui tutte le query per rifarl
         FOREIGN KEY(category) REFERENCES Categories(ID)
     );
 
-    - CREATE TABLE Chapters (
+    CREATE TABLE Chapters (
         ID int auto_increment not null,
         story int not null,
         title varchar(200) not null,
@@ -39,31 +39,30 @@ Query MySQL database (l'ho perso una volta, scrivo qui tutte le query per rifarl
         FOREIGN KEY(story) REFERENCES Stories(ID)
     );
 
-    - CREATE TABLE Options (
+    CREATE TABLE Options (
         ID int auto_increment not null,
         description text not null,
         current_chapter int not null,
         next_chapter int,
 
         PRIMARY KEY(ID),
-        FOREIGN KEY(current_chapter) REFERENCES Chapters(ID)
+        FOREIGN KEY(current_chapter) REFERENCES Chapters(ID),
         FOREIGN KEY(next_chapter) REFERENCES Chapters(ID)
     );
 
-    - CREATE TABLE ChaptersInteracted (
+    CREATE TABLE ChaptersInteracted (
         ID int auto_increment not null,
         user int not null,
         chapter int not null,
         interaction_date datetime not null,
 
         PRIMARY KEY(ID),
-        FOREIGN KEY(user) REFERENCES Users(ID)
+        FOREIGN KEY(user) REFERENCES Users(ID),
         FOREIGN KEY(chapter) REFERENCES Chapters(ID)
     );
 
 
 2- DML
-    -- Categoria
     INSERT INTO Categories (name, description) VALUES 
         ('Fantascienza', 'Viaggi interstellari, IA ribelli e misteri cosmici.'),
         ('Fantasy Comico', 'Un mondo magico dove tutto può andare storto... con stile.'),
@@ -73,7 +72,6 @@ Query MySQL database (l'ho perso una volta, scrivo qui tutte le query per rifarl
         ('Metarealtà', 'Quando la storia prende coscienza di sé e tu non sei solo un lettore, ma un pezzo del puzzle.');
 
 
-    -- Storia
     INSERT INTO Stories (title, description, category) VALUES
         ('Stazione Zero: Risveglio', 'Ti risvegli da un sonno criogenico su una stazione orbitale alla deriva. Nessun segno dell’equipaggio. Solo silenzio... e un messaggio criptico.', 1),
         ('La Quercia dei Meme Perduti', 'Sei un apprendista mago spedito in missione dal tuo maestro. Il tuo obiettivo? Recuperare l’antico Tomo dei Meme, nascosto nella foresta sacra di QuerciaTok.', 2),
@@ -82,7 +80,7 @@ Query MySQL database (l'ho perso una volta, scrivo qui tutte le query per rifarl
         ('Il Sangue di Dymion', 'Nella terra di Ephyra, l’ombra del titano Dymion minaccia il mondo. Solo un discendente della Dea Velya potrà fermarlo… o unirsi a lui.', 5),
         ('Premi Start per Continuare', 'Ti svegli in un menù. Non una stanza, non un mondo. Un menù. Sei una scelta, un’opzione, un comando. Qualcuno sta per premere "inizia". Ma cosa succede se ti rifiuti?', 6);
 
-    -- Capitoli
+
     INSERT INTO Chapters (story, title, description, isFinal) VALUES
     (1, 'Il Risveglio', 'Apri gli occhi in una capsula criogenica. La stanza è fredda e buia. Davanti a te, un terminale lampeggia.', FALSE),
     (1, 'L’Errore nel Sistema', 'Il terminale mostra un errore: “GLRBO-00042 detected”. Cosa vuol dire GLORBO?', FALSE),
@@ -123,7 +121,7 @@ Query MySQL database (l'ho perso una volta, scrivo qui tutte le query per rifarl
     (6, 'Il Linguaggio', 'Scrivi una storia. Poi un’altra. Il database ti ringrazia. Hai creato te stesso.', TRUE),
     (6, 'Blue Screen', 'L’universo crolla. Una sola scritta lampeggia tra le macerie digitali: “BRR BRR PATAPIM, SYSTEM FAILURE.”', TRUE);
 
-    -- Opzioni
+
     INSERT INTO Options (description, current_chapter, next_chapter) VALUES
     ('Controlla il terminale', 1, 2),
     ('Esci dalla stanza', 1, 3),

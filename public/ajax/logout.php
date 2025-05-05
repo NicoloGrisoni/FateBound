@@ -12,12 +12,12 @@
     if (!isset($_SESSION["IDUser"]) || !isset($_SESSION["authToken"])) {
         $information["status"] = "Access problem";
         $information["message"] = "Cannot access, missing authorization";
-        return json_encode($information);
+        echo json_encode($information);
     }
 
     unset($_SESSION["IDUser"], $_SESSION["authToken"]);
     
     $information["status"] = "Success";
     $information["message"] = "Logout successfully done";
-    return json_encode($information);
+    echo json_encode($information);
 ?>

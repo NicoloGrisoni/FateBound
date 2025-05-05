@@ -14,7 +14,7 @@
     if (!isset($_GET["IDChapter"])) {
         $information["status"] = "Information problem";
         $information["message"] = "Missing information about the chapter: ID not passed";
-        return json_encode($information);
+        echo json_encode($information);
     }
 
     $db = Database::GetInstance();
@@ -27,5 +27,5 @@
         $information["message"] = "Problem during the execution of the operation requested";
     }
 
-    return json_encode($information);
+    echo json_encode($information);
 ?>

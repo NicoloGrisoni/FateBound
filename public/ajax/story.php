@@ -14,7 +14,7 @@
     if (!isset($_GET["IDStory"])) {
         $information["status"] = "Information problem";
         $information["message"] = "Missing information about the story: ID missing";
-        return json_encode($information);
+        echo json_encode($information);
     }
 
     $db = Database::GetInstance();
@@ -41,5 +41,5 @@
         $information["message"] = "Problem during the execution of the operation requested";
     }
 
-    return json_encode($information);
+    echo json_encode($information);
 ?>

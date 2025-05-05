@@ -21,5 +21,5 @@
         $information["message"] = "Problem during the execution of the operation requested";
     }
 
-    return json_encode($information);
+    echo json_encode($information);
 ?>

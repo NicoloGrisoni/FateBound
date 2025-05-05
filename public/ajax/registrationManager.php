@@ -16,12 +16,12 @@
     if (!isset($_GET["username"]) || !isset($_GET["password"])) {
         $information["status"] = "Information problem";
         $information["message"] = "Missing information of username or password";
-        return json_encode($information);
+        echo json_encode($information);
     }
 
     $db = Database::GetInstance();
     $validUsername = $db->CheckUsername($_GET["username"]);
-    if ($validUsername) {
+    if (!$validUsername) {
         $registration = $db->Registration($_GET["username"], md5($_GET["password"]));
         if ($registration != -1) {
             $information["status"] = "Success";
@@ -35,5 +35,5 @@
         $information["message"] = "Username not valid";
     }
 
-    return json_encode($information);
+    echo json_encode($information);
 ?>

@@ -14,13 +14,13 @@
     if (!isset($_SESSION["IDUser"]) || !isset($_SESSION["authToken"])) {
         $information["status"] = "Access problem";
         $information["message"] = "Cannot access, missing authorization";
-        return json_encode($information);
+        echo json_encode($information);
     }
 
     if (!isset($_GET["IDStory"])) {
         $information["status"] = "Information problem";
         $information["message"] = "Missing information about the story: ID not passed";
-        return json_encode($information);
+        echo json_encode($information);
     }
 
     $db = Database::GetInstance();
@@ -33,5 +33,5 @@
         $information["message"] = "Problem during the execution of the operation requested";
     }
 
-    return json_encode($information);
+    echo json_encode($information);
 ?>
