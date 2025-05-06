@@ -9,17 +9,26 @@
      */
 
     class Interaction {
-        private $ID;
-        private $IDUser;
-        private $IDChapter;
-        private $date;
+        public $ID;
+        public $IDUser;
+        public $chapter;
+        public $date;
 
         public function __construct($ID, $IDUser, $IDChapter, $date) {
             //Check if all the value which cannot be null are correctly passed to the fuction
             //Check if all the value have the type expected
+            $db = Database::GetInstance();
+
             $this->ID = $ID;
             $this->IDUser = $IDUser;
-            $this->IDChapter = $IDChapter;
+            
+            $ch = $db->GetChapter($IDChapter);
+            if (!is_null($ch)) {
+                $this->chapter = $ch;
+            } else {
+                $this->chapter = "Data not found";
+            }
+            
             $this->date = $date;
         }
     }

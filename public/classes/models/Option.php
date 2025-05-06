@@ -9,10 +9,10 @@
      */
 
     class Option {
-        private $ID;
-        private $description;
-        private $IDCurrentChapter;
-        private $IDNextChapter;
+        public $ID;
+        public $description;
+        public $IDCurrentChapter;
+        public $IDNextChapter;
 
         public function __construct($ID, $description, $IDCurrentChapter, $IDNextChapter) {
             //Check if all the value which cannot be null are correctly passed to the fuction

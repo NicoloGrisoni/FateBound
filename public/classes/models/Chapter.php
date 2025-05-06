@@ -10,15 +10,17 @@
      */
 
     class Chapter {
-        private $ID;
-        private $IDStory;
-        private $title;
-        private $description;
-        private $isFinal;
+        public $ID;
+        public $IDStory;
+        public $title;
+        public $description;
+        public $isFinal;
 
         public function __construct($ID, $IDStory, $title, $description, $isFinal) {
             //Check if all the value which cannot be null are correctly passed to the fuction
             //Check if all the value have the type expected
+            $db = Database::GetInstance();
+
             $this->ID = $ID;
             $this->IDStory = $IDStory;
             $this->title = $title;

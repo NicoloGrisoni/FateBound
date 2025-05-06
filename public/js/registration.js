@@ -7,8 +7,7 @@ async function Registration() {
     const url = `../ajax/registrationManager.php?username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`;
 
     try {
-        let encodedUrl = encodeURI(url)
-        let response = await fetch(encodedUrl);
+        let response = await fetch(url);
 
         if (response.ok) {
             let text = await response.text();

@@ -42,5 +42,9 @@
     <div id="options">
 
     </div>
+
+    <label for="idChapter">Chapter: </label>
+    <input type="text" id="idChapter"><br>
+    <button onclick="GetChapter()">Chapter</button>
 </body>
 </html>

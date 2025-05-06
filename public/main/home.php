@@ -20,6 +20,8 @@
     />
 
     <link rel="stylesheet" href="../build/tailwind.css"/>
+
+    <script src="../js/home.js"></script>
 </head>
 <body>
     <!-- 
@@ -29,5 +31,7 @@
 
         Eventually there would be also some other objects in order to make the graphic better
     -->
+
+    <button onclick="GetStories()">Storie</button>
 </body>
 </html>

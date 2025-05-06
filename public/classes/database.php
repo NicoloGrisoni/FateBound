@@ -38,7 +38,7 @@
 
         private $conn;
         private function __construct() {
-            $this->conn = new mysqli("localhost", "root", "", "FateBound");
+            $this->conn = new mysqli("localhost", "root", "", "fatebound");
         }
 
         //LOGIN - REGISTRATION Section
@@ -142,6 +142,31 @@
 
         //STORIES Sectionù
         //All the stories recorded
+        public function GetCategoryByID($idCategory) {
+            $query = "SELECT * FROM Categories WHERE ID=?;";
+            $stmt = $this->conn->prepare($query);
+            $stmt->bind_param("i", $idCategory);
+            $stmt->execute();
+
+            $result = $stmt->get_result();
+            if (!$result) {
+                return null;
+            } else {
+                if ($result->num_rows == 1) {
+                    $row = $result->fetch_assoc();
+                    $category = new Category(
+                        $row["ID"],
+                        $row["name"],
+                        $row["description"],
+                    );
+
+                    return $category;
+                } else {
+                    return null;
+                }
+            }
+        }
+
         public function GetStories() {
             //REMEMBER: verify the type of the variable passed to the function
             $query = "SELECT * FROM Stories;";

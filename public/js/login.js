@@ -7,11 +7,13 @@ async function DoLogin() {
     const url = `../ajax/loginManager.php?username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`;
 
     try {
-        let encodedUrl = encodeURI(url)
-        let response = await fetch(encodedUrl);
+        let response = await fetch(url);
 
         if (response.ok) {
-            let json = await response.json();
+            let text = await response.text();
+            console.log(text);
+
+            let json = JSON.parse(text);
             console.log(json);
         } else {
         }

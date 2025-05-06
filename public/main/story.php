@@ -18,6 +18,8 @@
     />
 
     <link rel="stylesheet" href="../build/tailwind.css"/>
+
+    <script src="../js/story.js"></script>
 </head>
 <body>
     <!-- 
@@ -28,5 +30,9 @@
 
         Eventually there would be also some other objects in order to make the graphic better
     -->
+
+    <label for="idStory">ID storia: </label>
+    <input type="text" id="idStory"><br>
+    <button onclick="GetStory()">Story</button>
 </body>
 </html>

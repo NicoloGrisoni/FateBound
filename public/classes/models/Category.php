@@ -8,9 +8,9 @@
      */
 
     class Category {
-        private $ID;
-        private $name;
-        private $description;
+        public $ID;
+        public $name;
+        public $description;
 
         public function __construct($ID, $name, $description) {
             //Check if all the value which cannot be null are correctly passed to the fuction

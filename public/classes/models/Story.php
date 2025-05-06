@@ -9,16 +9,24 @@
      */
 
     class Story {
-        private $ID;
-        private $title;
-        private $description;
-        private $IDCategory;
+        public $ID;
+        public $title;
+        public $description;
+        public $category;
 
         public function __construct($ID, $title, $description, $IDCategory) {
+            $db = Database::GetInstance();
+
             $this->ID = $ID;
             $this->title = $title;
             $this->description = $description;
-            $this->IDCategory = $IDCategory;
+
+            $cat = $db->GetCategoryByID($IDCategory);
+            if (!is_null($cat)) {
+                $this->category = $cat;
+            } else {
+                $this->category = "Data not found";
+            }
         }
     }
 ?>
