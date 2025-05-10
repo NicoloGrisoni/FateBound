@@ -1,147 +1,108 @@
 <!DOCTYPE html>
-<html lang="it" class="scroll-smooth font-sans">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FateBound</title>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FateBound</title>
 
-  <!-- Google Font: Poppins -->
-  <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
-    rel="stylesheet"
-  />
+    <!-- Google Font: Poppins -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
 
-  <!-- Tailwind CSS (build locale) -->
-  <link rel="stylesheet" href="build/tailwind.css" />
-</head>
-
-<body class="bg-white text-gray-800 transition-colors duration-300">
-
-  <!-- NAVBAR -->
-  <header class="fixed w-full bg-white/80 backdrop-blur-md z-50 border-b border-gray-200">
-    <div class="max-w-4xl mx-auto flex items-center justify-between p-4">
-      <!-- Logo -->
-      <a href="#" class="flex items-center space-x-2">
-        <span class="font-bold text-2xl text-purple-700">FateBound</span>
-        <span class="w-3 h-3 bg-purple-700 rounded-full"></span>
-      </a>
-
-      <!-- Desktop menu -->
-      <nav class="hidden lg:flex space-x-6 text-lg font-medium text-gray-600">
-        <a href="#home"         class="hover:text-purple-700 transition-colors">Home</a>
-        <a href="#features"     class="hover:text-purple-700 transition-colors">Features</a>
-        <a href="#about"        class="hover:text-purple-700 transition-colors">About</a>
-        <a href="#get-started"  class="hover:text-purple-700 transition-colors">Get Started</a>
-      </nav>
-
-      <!-- Controls -->
-      <div class="flex items-center space-x-2">
-        <!-- Login / Register -->
-        <a href="login/login.php" target="" class="px-4 py-2 text-purple-700 font-medium hover:bg-purple-50 rounded-full transition">
-          Login
-        </a>
-        <a href="/register" class="px-4 py-2 bg-gradient-to-r from-purple-600 to-indigo-500 text-white rounded-full shadow-md hover:opacity-90 transition">
-          Registration
-        </a>
-        <!-- Mobile menu toggle -->
-        <button id="menu-toggle" class="lg:hidden p-2 rounded hover:bg-gray-100 transition-colors">
-          <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
-          </svg>
-        </button>
+    <link rel="stylesheet" href="build/tailwind.css" />
+  </head>
+  <body class="bg-neutral-50 text-neutral-800 font-body">
+    <!-- Navbar -->
+    <nav class="bg-neutral-50">
+      <div
+        class="container mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <div class="flex items-center">
+          <span class="text-2xl font-heading text-primary-600">FateBound</span>
+        </div>
+        <div class="flex items-center gap-4">
+          <a
+            href="./login/login.php"
+            class="px-4 py-2 text-neutral-700 hover:text-primary transition"
+            >Login</a
+          >
+          <a
+            href="./login/registration.php"
+            class="px-4 py-2 bg-primary-500 text-white rounded-xl hover:shadow-md transition"
+            >Registrati</a
+          >
+        </div>
       </div>
-    </div>
-  </header>
-
-  <!-- MOBILE MENU -->
-  <nav id="mobile-menu"
-       class="fixed inset-0 bg-white/95 flex flex-col items-center justify-center space-y-8 text-2xl font-semibold transform scale-0 transition-transform duration-300 origin-top-right z-40">
-    <a href="#home"        class="text-purple-700 hover:underline">Home</a>
-    <a href="#features"    class="text-purple-700 hover:underline">Features</a>
-    <a href="#about"       class="text-purple-700 hover:underline">About</a>
-    <a href="#get-started" class="text-purple-700 hover:underline">Get Started</a>
-    <a href="/login"       class="px-6 py-2 text-sm text-purple-700 border border-purple-700 rounded-full hover:bg-purple-50 transition">Login</a>
-    <a href="/register"    class="px-6 py-2 bg-gradient-to-r from-purple-600 to-indigo-500 text-white rounded-full hover:opacity-90 transition">Registration</a>
-  </nav>
-
-
-  <!-- MAIN CONTENT -->
-  <main class="pt-24">
+    </nav>
 
     <!-- Hero -->
-    <section id="home" class="min-h-[70vh] flex flex-col items-center justify-center text-center px-4 space-y-6 bg-purple-50">
-      <h1 class="text-5xl md:text-6xl font-extrabold text-purple-800">Benvenuto su FateBound</h1>
-      <p class="text-lg md:text-xl text-gray-700 max-w-2xl">
-        Vivi storie interattive che si adattano alle tue scelte, con immagini mozzafiato e voci narranti. Inizia subito senza obbligo di registrazione!
+    <header class="container mx-auto px-6 py-16 text-center">
+      <h1
+        class="text-4xl md:text-5xl font-heading font-bold text-neutral-900 max-w-2xl mx-auto leading-tight"
+      >
+        Immergiti in storie interattive che si adattano ad ogni tua scelta!
+      </h1>
+      <p class="mt-4 text-lg text-neutral-600 max-w-xl mx-auto">
+        FateBound è il tuo regno narrativo: decisioni, sorprese e finali
+        multipli.
       </p>
-      <div class="flex flex-col sm:flex-row gap-4">
-        <a href="/play" id="get-started"
-           class="px-8 py-3 bg-gradient-to-r from-purple-600 to-indigo-500 text-white rounded-full text-lg font-medium hover:opacity-90 transition">
-          Gioca Ora
+      <div class="mt-8 flex justify-center gap-6">
+        <a
+          href="/play"
+          class="px-6 py-3 bg-primary-500 text-white rounded-2xl font-medium hover:shadow-lg transition"
+        >
+          Inizia Ora
         </a>
-        <a href="#features"
-           class="px-8 py-3 border-2 border-purple-600 text-purple-600 rounded-full text-lg font-medium hover:bg-purple-100 transition">
-          Scopri le Features
-        </a>
+        <a
+            href="/about"
+            class="px-6 py-3 text-neutral-700 hover:text-primary transition"
+            >About</a
+          >
       </div>
-    </section>
+    </header>
 
     <!-- Features -->
-    <section id="features" class="py-20 bg-white">
-      <div class="max-w-4xl mx-auto text-center px-4 mb-12">
-        <h2 class="text-3xl font-bold text-purple-800 mb-4">Funzionalità Principali</h2>
-        <p class="text-gray-600">Ti offriamo tutto il necessario per creare e vivere un racconto davvero unico.</p>
-      </div>
-      <div class="max-w-4xl mx-auto px-4 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-        <div class="flex flex-col items-center text-center p-6 border border-gray-100 rounded-xl hover:shadow-lg transition">
-          <div class="text-4xl mb-4 text-purple-600">📜</div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-2">Percorsi Ramificati</h3>
-          <p class="text-gray-600">Ogni tua scelta apre strade diverse e inaspettate.</p>
+    <section class="py-16">
+      <div
+        class="container mx-auto px-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-8"
+      >
+        <div
+          class="p-6 border border-neutral-200 rounded-2xl hover:shadow-lg transition"
+        >
+          <div class="text-3xl mb-4">✨</div>
+          <h3 class="text-xl font-heading mb-2">Storie Illimitate</h3>
+          <p class="text-neutral-600">
+            Genera avventure uniche ogni volta, grazie alla nostra AI narrativa.
+          </p>
         </div>
-        <div class="flex flex-col items-center text-center p-6 border border-gray-100 rounded-xl hover:shadow-lg transition">
-          <div class="text-4xl mb-4 text-purple-600">🔊</div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-2">Voci Narranti</h3>
-          <p class="text-gray-600">Voci TTS selezionate per immergerti nell’atmosfera.</p>
+        <div
+          class="p-6 border border-neutral-200 rounded-2xl hover:shadow-lg transition"
+        >
+          <div class="text-3xl mb-4">🎲</div>
+          <h3 class="text-xl font-heading mb-2">Scelte Importanti</h3>
+          <p class="text-neutral-600">
+            Ogni decisione apre nuovi percorsi: senti il brivido della suspense.
+          </p>
         </div>
-        <div class="flex flex-col items-center text-center p-6 border border-gray-100 rounded-xl hover:shadow-lg transition">
-          <div class="text-4xl mb-4 text-purple-600">🌅</div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-2">Sfondo Dinamico</h3>
-          <p class="text-gray-600">Immagini API da Unsplash per ambientazioni spettacolari.</p>
+        <div
+          class="p-6 border border-neutral-200 rounded-2xl hover:shadow-lg transition"
+        >
+          <div class="text-3xl mb-4">🔮</div>
+          <h3 class="text-xl font-heading mb-2">Raggiungi i finali</h3>
+          <p class="text-neutral-600">
+            Gioca a tutte le storie e reggiungi tutti i finali possibili.
+          </p>
         </div>
-      </div>
-    </section>
-
-    <!-- About -->
-    <section id="about" class="py-20 bg-gray-50">
-      <div class="max-w-3xl mx-auto text-center px-4">
-        <h2 class="text-3xl font-bold text-purple-800 mb-4">Chi Siamo</h2>
-        <p class="text-gray-600">
-          FateBound è una piattaforma dedicata agli amanti delle narrazioni interattive. 
-          Siamo un team di appassionati creativi e sviluppatori con l’obiettivo di mettere l’utente al centro della storia.
-        </p>
-      </div>
-    </section>
-
-    <!-- Call to Action Finale -->
-    <section id="get-started" class="py-20 bg-white">
-      <div class="max-w-3xl mx-auto text-center px-4">
-        <h2 class="text-3xl font-bold text-purple-800 mb-4">Pronto a iniziare?</h2>
-        <p class="text-gray-600 mb-8">Salta la registrazione e tuffati subito nell’avventura.</p>
-        <a href="/play"
-           class="px-8 py-4 bg-gradient-to-r from-purple-600 to-indigo-500 text-white rounded-full text-lg font-medium hover:opacity-90 transition">
-          Gioca Ora
-        </a>
       </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-white border-t border-gray-200 py-8">
-      <div class="max-w-4xl mx-auto text-center text-gray-600 px-4">
-        © 2025 FateBound. Tutti i diritti riservati.
+    <footer class="bg-neutral-50 py-8">
+      <div class="container mx-auto px-6 text-center text-neutral-600">
+        &copy; 2025 FateBound. Tutti i diritti riservati.
       </div>
     </footer>
-
-  </main>
-
-</body>
+  </body>
 </html>
