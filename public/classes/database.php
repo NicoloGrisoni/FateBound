@@ -42,6 +42,26 @@
         }
 
         //LOGIN - REGISTRATION Section
+        public function GetUserInfo($idUser) {
+            //REMEMBER: verify the type of the variable passed to the function
+            $query = "SELECT * FROM Users WHERE ID=?;";
+            $stmt = $this->conn->prepare($query);
+            $stmt->bind_param("i", $idUser);
+            $stmt->execute();
+
+            $result = $stmt->get_result();
+            if ($result === false) {
+                return null;
+            } else {
+                if ($result->num_rows == 1) {
+                    $row = $result->fetch_assoc();
+                    return $row;
+                } else {
+                    return null;
+                }
+            }
+        }
+
         //Login 
         public function DoLogin($username, $password) {
             //REMEMBER: verify the type of the variable passed to the function
