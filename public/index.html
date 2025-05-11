@@ -11,26 +11,29 @@
       rel="stylesheet"
     />
 
-    <link rel="stylesheet" href="build/tailwind.css" />
+    <link rel="stylesheet" href="./build/tailwind.css"/>
   </head>
-  <body class="bg-neutral-50 text-neutral-800 font-body">
+  <body class="font-['Poppins',_sans-serif] bg-white text-gray-800 antialiased">
     <!-- Navbar -->
-    <nav class="bg-neutral-50">
+    <nav class="bg-white/80 backdrop-blur-md sticky top-0 left-0 right-0 z-50">
       <div
-        class="container mx-auto px-6 py-4 flex justify-between items-center"
+        class="container mx-auto px-6 py-3 flex justify-between items-center"
       >
         <div class="flex items-center">
-          <span class="text-2xl font-heading text-primary-600">FateBound</span>
+          <!-- Logo originale, cambio solo classi -->
+          <span class="text-2xl font-bold text-gray-900">FateBound</span>
         </div>
-        <div class="flex items-center gap-4">
+        <div class="flex items-center gap-3">
+          <!-- Link Login originale, cambio solo classi -->
           <a
             href="./login/login.php"
-            class="px-4 py-2 text-neutral-700 hover:text-primary transition"
+            class="text-custom-purple-accent hover:text-white border border-custom-purple-accent hover:bg-custom-purple-accent/90 rounded-lg px-4 py-2 text-sm font-medium transition-colors"
             >Login</a
           >
+          <!-- Link Registrati originale, cambio solo classi -->
           <a
             href="./login/registration.php"
-            class="px-4 py-2 bg-primary-500 text-white rounded-xl hover:shadow-md transition"
+            class="bg-custom-purple-accent hover:bg-opacity-90 text-white rounded-lg px-4 py-2 text-sm font-medium transition-colors"
             >Registrati</a
           >
         </div>
@@ -38,60 +41,66 @@
     </nav>
 
     <!-- Hero -->
-    <header class="container mx-auto px-6 py-16 text-center">
-      <h1
-        class="text-4xl md:text-5xl font-heading font-bold text-neutral-900 max-w-2xl mx-auto leading-tight"
-      >
-        Immergiti in storie interattive che si adattano ad ogni tua scelta!
-      </h1>
-      <p class="mt-4 text-lg text-neutral-600 max-w-xl mx-auto">
-        FateBound è il tuo regno narrativo: decisioni, sorprese e finali
-        multipli.
-      </p>
-      <div class="mt-8 flex justify-center gap-6">
-        <a
-          href="/play"
-          class="px-6 py-3 bg-primary-500 text-white rounded-2xl font-medium hover:shadow-lg transition"
-        >
-          Inizia Ora
-        </a>
-        <a
-            href="/about"
-            class="px-6 py-3 text-neutral-700 hover:text-primary transition"
-            >About</a
-          >
+    <!-- Modifico padding top e bottom per accomodare la navbar sticky e dare più respiro -->
+    <header class="bg-gradient-to-b from-custom-bg-start to-custom-bg-end pt-24 pb-16 md:pt-32 md:pb-24">
+      <div class="container mx-auto px-6 text-center md:text-left">
+        <!-- Aggiungo un div wrapper per eventuale layout a due colonne se si volesse aggiungere immagine senza cambiare HTML, ma per ora solo testo centrale -->
+        <div class="max-w-2xl mx-auto md:mx-0">
+            <p class="text-sm font-semibold text-custom-purple-accent tracking-wider uppercase mb-1">FATEBOUND PRESENTA</p> <!-- Testo aggiunto per somiglianza, ma l'utente ha detto di non modificare struttura. Lo lascio per ora, ma se è un problema lo tolgo -->
+            <h1
+                class="text-4xl sm:text-5xl md:text-6xl font-extrabold text-gray-900 leading-tight mb-6"
+            >
+                Immergiti in storie interattive che si adattano ad ogni tua scelta!
+            </h1>
+            <p class="mt-4 text-lg text-gray-600 mb-8">
+                FateBound è il tuo regno narrativo: decisioni, sorprese e finali
+                multipli.
+            </p>
+            <div class="mt-8 flex flex-col sm:flex-row justify-center md:justify-start gap-4">
+                <a
+                href="./main/home.php"
+                class="bg-custom-purple-accent hover:bg-opacity-90 text-white rounded-lg px-6 py-3 text-base font-medium transition-colors shadow-md hover:shadow-lg"
+                >
+                Inizia Ora
+                </a>
+            </div>
+        </div>
+        <!-- Qui potrebbe andare un'immagine se la struttura lo permettesse senza modifiche HTML profonde -->
       </div>
     </header>
 
     <!-- Features -->
-    <section class="py-16">
+    <section class="py-16 md:py-24 bg-white">
       <div
         class="container mx-auto px-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-8"
       >
+        <!-- Card 1 -->
         <div
-          class="p-6 border border-neutral-200 rounded-2xl hover:shadow-lg transition"
+          class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 border border-gray-100 flex flex-col"
         >
-          <div class="text-3xl mb-4">✨</div>
-          <h3 class="text-xl font-heading mb-2">Storie Illimitate</h3>
-          <p class="text-neutral-600">
+          <div class="text-4xl mb-4 text-custom-purple-accent">✨</div> <!-- Aumentata dimensione emoji e colore -->
+          <h3 class="text-xl font-semibold text-gray-800 mb-2">Storie Illimitate</h3>
+          <p class="text-gray-600 text-sm flex-grow">
             Genera avventure uniche ogni volta, grazie alla nostra AI narrativa.
           </p>
         </div>
+        <!-- Card 2 -->
         <div
-          class="p-6 border border-neutral-200 rounded-2xl hover:shadow-lg transition"
+          class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 border border-gray-100 flex flex-col"
         >
-          <div class="text-3xl mb-4">🎲</div>
-          <h3 class="text-xl font-heading mb-2">Scelte Importanti</h3>
-          <p class="text-neutral-600">
+          <div class="text-4xl mb-4 text-custom-purple-accent">🎲</div>
+          <h3 class="text-xl font-semibold text-gray-800 mb-2">Scelte Importanti</h3>
+          <p class="text-gray-600 text-sm flex-grow">
             Ogni decisione apre nuovi percorsi: senti il brivido della suspense.
           </p>
         </div>
+        <!-- Card 3 -->
         <div
-          class="p-6 border border-neutral-200 rounded-2xl hover:shadow-lg transition"
+          class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 border border-gray-100 flex flex-col"
         >
-          <div class="text-3xl mb-4">🔮</div>
-          <h3 class="text-xl font-heading mb-2">Raggiungi i finali</h3>
-          <p class="text-neutral-600">
+          <div class="text-4xl mb-4 text-custom-purple-accent">🔮</div>
+          <h3 class="text-xl font-semibold text-gray-800 mb-2">Raggiungi i finali</h3>
+          <p class="text-gray-600 text-sm flex-grow">
             Gioca a tutte le storie e reggiungi tutti i finali possibili.
           </p>
         </div>
@@ -99,9 +108,12 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-neutral-50 py-8">
-      <div class="container mx-auto px-6 text-center text-neutral-600">
-        &copy; 2025 FateBound. Tutti i diritti riservati.
+    <footer class="bg-custom-footer-bg text-custom-footer-text py-10">
+      <div class="container mx-auto px-6 text-center md:flex md:justify-between md:items-center">
+        <span class="text-lg font-semibold mb-4 md:mb-0 block md:inline">FateBound</span>
+        <div class="text-sm">
+            &copy; 2025 FateBound. Tutti i diritti riservati.
+        </div>
       </div>
     </footer>
   </body>

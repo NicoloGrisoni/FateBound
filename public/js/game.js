@@ -2,9 +2,13 @@
  * This file contains the functions to obtain the information needed during the execution of the game
  */
 
-async function GetChapter() {
-    const id = document.getElementById("idChapter").value;
-    const url = `../ajax/chapter.php?IDChapter=${encodeURIComponent(id)}`;
+document.addEventListener("DOMContentLoaded", function() {
+    const firstChapter = document.getElementById("firstChapter").value
+    GetChapter(firstChapter)
+})
+
+async function GetChapter(idChapter) {
+    const url = `../ajax/chapter.php?IDChapter=${encodeURIComponent(idChapter)}`;
 
     try {
         let response = await fetch(url);
@@ -17,24 +21,61 @@ async function GetChapter() {
             console.log(json);
 
             let idChapter = json["chapter"].ID
-            let responseChapters = await fetch(`../ajax/chapterOptions.php?IDChapter=${idChapter}`);
-            if (responseChapters.ok) {
-                let textChapter = await responseChapters.text();
-                //console.log(textChapter)
+            if (json["chapter"].isFinal === 0) {
+                let chapterOptions = await fetch(`../ajax/chapterOptions.php?IDChapter=${idChapter}`);
+                if (chapterOptions.ok) {
+                    let textOptions = await chapterOptions.text();
+                    //console.log(textChapter)
 
-                let jsonChapter = JSON.parse(textChapter)
-                console.log(jsonChapter)
+                    let jsonOptions = JSON.parse(textOptions)
+                    console.log(jsonOptions)
+
+                    CreateOptions(jsonOptions.options)
+                }
+            } else {
+                const end = document.createElement("button")
+                end.onclick = () => window.location.href = "./home.php"
+                end.innerHTML = "Fine"
+
+                document.getElementById("options").appendChild(end)
             }
 
-            SetImageUnsplah(json["chapter"].title + json["chapter"].description)
-            document.getElementById("title").innerHTML = json["chapter"].title
-            document.getElementById("description").innerHTML = json["chapter"].description
+            SetTags(json)
         } else {
             console.log(response.status)
         }
     } catch (error) {
         console.log(error)
     }
+}
+
+function SetTags(info) {
+    document.getElementById("title").innerHTML = info["chapter"].title
+    document.getElementById("description").innerHTML = info["chapter"].description
+    SetImageUnsplah(info["chapter"].title + info["chapter"].description)
+}
+
+function CreateOptions(options) {
+    const divOptions = document.getElementById("options")
+    divOptions.innerHTML = "";
+    for (let i = 0; i < options.length; i++) {
+        const option = options[i]
+        const divOption = CreateOption(option)
+        divOptions.appendChild(divOption)
+    }
+}
+
+function CreateOption(option) {
+    const div = document.createElement("div")
+    div.className = "option bg-white rounded-xl shadow-md p-4 cursor-pointer hover:bg-blue-100 transition"
+    div.onclick = () => GetChapter(option.IDNextChapter)
+
+    const description = document.createElement("p")
+    description.innerHTML = option.description
+    description.className = "text-gray-800 text-lg font-medium"
+    div.appendChild(description)
+
+    return div
 }
 
 async function SetImageUnsplah(search) {

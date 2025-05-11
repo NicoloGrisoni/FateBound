@@ -21,11 +21,12 @@
 
     $db = Database::GetInstance();
     $validUsername = $db->CheckUsername($_GET["username"]);
-    if (!$validUsername) {
+    if (!is_null($validUsername) && $validUsername === false) {
         $registration = $db->Registration($_GET["username"], md5($_GET["password"]));
         if ($registration != -1) {
             $information["status"] = "Success";
-            $information["ID"] = $registration;
+
+            $_SESSION["userId"] = $registration;
         } else {
             $information["status"] = "Failed";
             $information["message"] = "Problem during the execution of the operation requested";

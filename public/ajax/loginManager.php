@@ -21,7 +21,8 @@
     $login = $db->DoLogin($_GET["username"], md5($_GET["password"]));
     if ($login != -1) {
         $information["status"] = "Success";
-        $information["ID"] = $login;
+
+        $_SESSION["userId"] = $login;
     } else {
         $information["status"] = "Failed";
         $information["message"] = "Problem during the execution of the operation requested";

@@ -25,7 +25,8 @@
 
     <script src="../js/game.js"></script>
 </head>
-<body>
+<body class="bg-gray-100 font-[Poppins]">
+
     <!-- 
         What's needed:
         - img to show the image obtained by the Unsplash API based on the title of the current chapter
@@ -36,15 +37,44 @@
         Eventually there would be also some other objects in order to make the graphic better
     -->
 
-    <img src="" alt="not-found" id="image"><br>
-    <p id="title"></p><br>
-    <p id="description"></p><br>
-    <div id="options">
+    <input type="hidden" id="firstChapter" value="<?php echo $_GET["idChapter"]?>">
 
-    </div>
+    <nav class="bg-white/80 backdrop-blur-md sticky top-0 left-0 right-0 z-50 shadow-sm">
+        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <span class="text-2xl font-bold text-gray-900">FateBound</span>
+        </div>
+    </nav>
 
-    <label for="idChapter">Chapter: </label>
-    <input type="text" id="idChapter"><br>
-    <button onclick="GetChapter()">Chapter</button>
+    <main class="container mx-auto px-6 py-10">
+        <div class="flex flex-row flex-wrap gap-8 items-start">
+
+            <!-- Immagine fissa -->
+            <div style="width: 400px; height: 300px;" class="flex-shrink-0">
+                <img
+                    src=""
+                    id="image"
+                    alt="Immagine della storia"
+                    class="w-full h-full object-cover rounded-xl shadow-md" />
+            </div>
+
+            <!-- Dettagli del capitolo -->
+            <div class="flex-1 min-w-[250px]">
+                <!-- Titolo e descrizione -->
+                <div class="max-w-4xl mx-auto mb-10 text-center">
+                    <h1 id="title" class="text-4xl font-bold text-gray-800 mb-4">
+                        
+                    </h1>
+                    <p id="description" class="text-lg text-gray-600">
+                        
+                    </p>
+                </div>
+
+                <!-- Opzioni del capitolo -->
+                <div id="options" class="max-w-4xl mx-auto grid gap-4">
+
+                </div>
+            </div>
+        </div>
+    </main>
 </body>
 </html>

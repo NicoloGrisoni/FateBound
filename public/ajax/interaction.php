@@ -11,7 +11,7 @@
     }
 
     $information = [];
-    if (!isset($_SESSION["IDUser"]) || !isset($_SESSION["authToken"])) {
+    if (!isset($_SESSION["userId"]) || !isset($_SESSION["authToken"])) {
         $information["status"] = "Access problem";
         $information["message"] = "Cannot access, missing authorization";
         echo json_encode($information);

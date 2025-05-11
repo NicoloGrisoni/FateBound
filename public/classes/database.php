@@ -51,7 +51,7 @@
             $stmt->execute();
 
             $result = $stmt->get_result();
-            if (!$result) {
+            if ($result === false) {
                 return -1;
             } else {
                 if ($result->num_rows == 1) {
@@ -69,10 +69,8 @@
             $query = "INSERT INTO Users (username, password, type) VALUES (?, ?, 'user');";
             $stmt = $this->conn->prepare($query);
             $stmt->bind_param("ss", $username, $password);
-            $stmt->execute();
 
-            $result = $stmt->get_result();
-            if ($result === true) {
+            if ($stmt->execute()) {
                 return $this->conn->insert_id;
             } else {
                 return -1;
@@ -89,7 +87,7 @@
 
             $result = $stmt->get_result();
             if ($result === false) {
-                return false;
+                return null;
             } else {
                 return $result->num_rows == 1;
             }
@@ -101,9 +99,8 @@
             $query = "UPDATE Users SET username=? WHERE ID=?;";
             $stmt = $this->conn->prepare($query);
             $stmt->bind_param("si", $newUsername, $userId);
-            $stmt->execute();
 
-            return $stmt->get_result();
+            return $stmt->execute();
         }
 
         //Update user's password 
@@ -112,9 +109,8 @@
             $query = "UPDATE Users SET password=? WHERE ID=?;";
             $stmt = $this->conn->prepare($query);
             $stmt->bind_param("si", $newPassword, $userId);
-            $stmt->execute();
 
-            return $stmt->get_result();
+            return $stmt->execute();
         }
 
         //Update user's profile picture 
@@ -123,9 +119,8 @@
             $query = "UPDATE Users SET profile_picture=? WHERE ID=?;";
             $stmt = $this->conn->prepare($query);
             $stmt->bind_param("si", $newProfilePictureName, $userId);
-            $stmt->execute();
 
-            return $stmt->get_result();
+            return $stmt->execute();
         }
 
         //Update user's username 
@@ -134,9 +129,8 @@
             $query = "UPDATE Users SET profile_picture=NULL WHERE ID=?;";
             $stmt = $this->conn->prepare($query);
             $stmt->bind_param("i", $userId);
-            $stmt->execute();
 
-            return $stmt->get_result();
+            return $stmt->execute();
         }
 
 
@@ -334,9 +328,8 @@
             $query = "UPDATE ChaptersInteracted SET chapter=?, interaction_date=NOW() WHERE user=?";
             $stmt = $this->conn->prepare($query);
             $stmt->bind_param("ii", $newChapterInteracted, $idUser);
-            $stmt->execute();
-
-            return $stmt->get_result();
+            
+            return $stmt->execute();
         }
 
         //Last interaction made by a user with a story
