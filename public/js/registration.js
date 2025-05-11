@@ -11,12 +11,17 @@ async function Registration() {
 
         if (response.ok) {
             let text = await response.text();
-            console.log(text);
 
             let json = await JSON.parse(text);
             console.log(json);
+
+            if (json["status"] === "Success") {
+                window.location.href = "../main/home.php";
+            }
         } else {
+            console.log(response.status)
         }
     } catch (error) {
+        console.log(error)
     }
 }
