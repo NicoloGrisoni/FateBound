@@ -11,14 +11,14 @@
     }
 
     $information = [];
-    if (!isset($_SESSION["IDUser"]) || !isset($_SESSION["authToken"])) {
+    if (!isset($_SESSION["idUser"])) {
         $information["status"] = "Access problem";
         $information["message"] = "Cannot access, missing authorization";
         echo json_encode($information);
     }
 
 
-    if (!isset($_GET["newUsername"]) && !isset($_GET["newPassword"]) && !isset($_GET["newProfilePicture"])) {
+    if (!isset($_GET["newUsername"]) && !isset($_FILES["profilePicture"])) {
         $information["status"] = "Failed";
         $information["message"] = "Missing information: at least one info must be updated";
     } else {
@@ -26,11 +26,17 @@
         $resultUpdate = false;
 
         if (isset($_GET["newUsername"])) {
-            $resultUpdate = $db->UpdateUsername($_SESSION["IDUser"],$_GET["newUsername"]);
-        } else if (isset($_GET["newPassword"])) {
-            $resultUpdate = $db->UpdatePassword($_SESSION["IDUser"],$_GET["newPassword"]);
-        } else if (isset($_GET["newProfilePicture"])) {
-            $resultUpdate = $db->UpdateProfilePicture($_SESSION["IDUser"], $_GET["newProfilePicture"]);
+            $resultUpdate = $db->UpdateUsername($_SESSION["idUser"],$_GET["newUsername"]);
+        } else if (isset($_FILES['profilePicture'])) {
+            $uploadDir = '../images/';
+            $fileName = basename($_FILES['profilePicture']['name']);
+            $targetPath = $uploadDir . $fileName;
+
+            if (move_uploaded_file($_FILES['profilePicture']['tmp_name'], $targetPath)) {
+                $resultUpdate = $db->UpdateProfilePicture($_SESSION["idUser"], $fileName);
+            } else {
+                $resultUpdate = false;
+            }
         }
 
         if ($resultUpdate) {

@@ -17,6 +17,8 @@ async function Registration() {
 
             if (json["status"] === "Success") {
                 window.location.href = "../main/home.php";
+            } else {
+                window.alert(json["message"])
             }
         } else {
             console.log(response.status)

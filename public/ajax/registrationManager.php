@@ -26,7 +26,7 @@
         if ($registration != -1) {
             $information["status"] = "Success";
 
-            $_SESSION["userId"] = $registration;
+            $_SESSION["idUser"] = $registration;
         } else {
             $information["status"] = "Failed";
             $information["message"] = "Problem during the execution of the operation requested";

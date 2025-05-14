@@ -22,7 +22,7 @@
     if ($login != -1) {
         $information["status"] = "Success";
 
-        $_SESSION["userId"] = $login;
+        $_SESSION["idUser"] = $login;
     } else {
         $information["status"] = "Failed";
         $information["message"] = "Problem during the execution of the operation requested";

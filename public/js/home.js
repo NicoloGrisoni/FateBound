@@ -38,20 +38,32 @@ function CreateDivs(stories) {
 }
 
 function CreateStoryTags(story) {
-    const container = document.createElement("a");
-    container.className = 
-    "group block rounded-xl border border-custom-purple-accent/50 hover:border-custom-purple-accent bg-purple-50/30 text-gray-800 p-5 sm:p-6 aspect-[4/3] flex flex-col justify-between items-center text-center overflow-hidden transition-all duration-300 ease-in-out transform hover:-translate-y-1 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-custom-purple-accent focus:ring-offset-2";
-    container.href = `./story.php?idStory=${story["ID"]}`;
+    const container = document.createElement("div")
+    container.className = "bg-light-card dark:bg-dark-card rounded-card overflow-hidden shadow-light dark:shadow-dark hover-lift"
 
-    const title = document.createElement("h3");
-    title.innerHTML = story["title"];
-    title.className = "story-card-title text-lg sm:text-xl font-semibold leading-tight text-violet-800 mb-1 sm:mb-1.5";
-    container.appendChild(title);
+    const div = document.createElement("div")
+    div.className = "p-4"
 
-    const description = document.createElement("p");
-    description.innerHTML = story["description"];
-    description.className = "text-xs sm:text-sm text-gray-700 mt-2 hidden group-hover:block transition-opacity duration-300 ease-in-out leading-snug";
-    container.appendChild(description);
+    const title = document.createElement("h3")
+    title.innerHTML = story["title"]
+    title.className = "font-bold text-lg mb-1"
+    div.appendChild(title)
 
-    return container;
+    const description = document.createElement("p")
+    description.innerHTML = story["description"]
+    description.className = "text-light-text-secondary dark:text-dark-text-secondary text-sm mb-3 line-clamp-2"
+    div.appendChild(description)
+
+    const more = document.createElement("div")
+    more.className = "mt-4 pt-4 flex justify-between"
+
+    const details = document.createElement("a")
+    details.className = "text-primary hover:underline font-medium"
+    details.href = `./story.php?idStory=${story.ID}`
+    details.innerHTML = "View details"
+    more.appendChild(details)
+    div.appendChild(more)
+
+    container.appendChild(div)
+    return container
 }

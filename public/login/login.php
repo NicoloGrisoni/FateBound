@@ -33,42 +33,44 @@
 
     Eventually there would be also some other objects in order to make the graphic better
   -->
-  <main class="flex flex-col items-center justify-center flex-grow w-full max-w-md mx-auto">
-    <div class="mb-8 sm:mb-10 text-center">
-      <a href="../index.html" class="text-3xl sm:text-4xl font-bold text-gray-900">FateBound</a>
-    </div>
-
-    <div class="bg-white w-full rounded-xl shadow-2xl p-6 sm:p-8 md:p-10">
-      <h2 class="text-2xl sm:text-3xl font-bold text-center text-gray-900 mb-3 sm:mb-4">Bentornato!</h2>
-      <p class="text-center text-gray-600 mb-6 sm:mb-8 text-sm sm:text-base">Accedi per continuare la tua avventura.</p>
-
-      <div class="space-y-4 sm:space-y-5">
-        <div>
-          <label for="username" class="block text-xs sm:text-sm font-medium text-gray-700 mb-1 sm:mb-1.5">Username</label>
-          <input type="text" id="username" placeholder="Il tuo username"
-            class="w-full px-3 sm:px-4 py-2 sm:py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-custom-purple-accent focus:border-custom-purple-accent outline-none transition-colors placeholder-gray-400 text-sm" />
+  <div class="min-h-[calc(100vh-140px)] flex items-center justify-center py-12 px-4">
+    <div class="w-full max-w-md bg-light-card dark:bg-dark-card rounded-card shadow-light dark:shadow-dark p-8 transition-all hover-lift">
+        <div class="text-center mb-8">
+            <h1 class="text-2xl font-bold mb-2">Welcome Back, Adventurer!</h1>
+            <p class="text-light-text-secondary dark:text-dark-text-secondary">Sign in to continue your epic journey</p>
         </div>
-
-        <div>
-          <label for="password" class="block text-xs sm:text-sm font-medium text-gray-700 mb-1 sm:mb-1.5">Password</label>
-          <input type="password" id="password" placeholder="La tua password"
-            class="w-full px-3 sm:px-4 py-2 sm:py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-custom-purple-accent focus:border-custom-purple-accent outline-none transition-colors placeholder-gray-400 text-sm" />
+        
+        <div class="space-y-2">
+            <label for="username" class="block text-sm font-medium">Username</label>
+            <div class="relative">
+                <input type="text" id="username" name="username" class="block w-full pl-10 pr-3 py-2 border border-light-border dark:border-dark-border rounded-input bg-light-bg dark:bg-dark-bg focus:ring-2 focus:ring-primary focus:border-primary transition-colors" placeholder="Enter your username" required>
+            </div>
         </div>
-
-        <button type="button" onclick="DoLogin()"
-          class="w-full bg-custom-purple-accent hover:bg-opacity-90 text-white rounded-lg py-2.5 sm:py-3 text-sm sm:text-base font-semibold transition-colors shadow-md hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-custom-purple-accent focus:ring-offset-2">
-          Accedi
+        
+        <div class="space-y-2 mt-4">
+            <div class="flex items-center justify-between">
+                <label for="password" class="block text-sm font-medium">Password</label>
+                <a href="#" class="text-sm text-primary hover:underline">Forgot password?</a>
+            </div>
+            <div class="relative">
+                <input type="password" id="password" name="password" class="block w-full pl-10 pr-3 py-2 border border-light-border dark:border-dark-border rounded-input bg-light-bg dark:bg-dark-bg focus:ring-2 focus:ring-primary focus:border-primary transition-colors" placeholder="Enter your password" required>
+            </div>
+        </div>
+        
+        <button 
+          onclick="DoLogin()"
+          class="w-full py-2 px-4 mt-4 rounded-button bg-primary text-white hover:bg-primary-dark transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary relative overflow-hidden group">
+            <span class="relative z-10">Sign in</span>
+            <span class="absolute top-0 left-0 w-0 h-full bg-primary-dark transition-all duration-300 group-hover:w-full"></span>
         </button>
+        
+        <div class="mt-6 text-center">
+            <p class="text-sm text-light-text-secondary dark:text-dark-text-secondary">
+                Don't have an account? 
+                <a href="./registration.php" class="text-primary hover:underline">Register now</a>
+            </p>
+        </div>
       </div>
-
-      <p class="mt-6 sm:mt-8 text-center text-xs sm:text-sm text-gray-600">
-        Non hai un account? <a href="./registration.php" class="font-medium text-custom-purple-accent hover:underline">Registrati ora</a>
-      </p>
-    </div>
-  </main>
-  
-  <footer class="w-full py-6 sm:py-8 text-center text-xs sm:text-sm text-gray-500">
-    &copy; 2025 FateBound. Tutti i diritti riservati.
-  </footer>
+  </div>
 </body>
 </html>

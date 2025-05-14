@@ -2,15 +2,13 @@
  * This file contains the functions to obtain the information needed during the execution of the game
  */
 
-const divOptions = document.getElementById("options")
-
 document.addEventListener("DOMContentLoaded", function() {
     const firstChapter = document.getElementById("firstChapter").value
     GetChapter(firstChapter)
 })
 
 async function GetChapter(idChapter) {
-    divOptions.innerHTML = "";
+    document.getElementById("options").innerHTML = "";
 
     const url = `../ajax/chapter.php?IDChapter=${encodeURIComponent(idChapter)}`;
 
@@ -31,12 +29,32 @@ async function GetChapter(idChapter) {
             } else {
                 SetFinal()
             }
+
+            UpdateInteraction(json["chapter"].ID)
         } else {
             console.log(response.status)
         }
     } catch (error) {
         console.log(error)
     }
+}
+
+async function UpdateInteraction(idChapter) {
+    const url = `../ajax/updateInteraction.php?idChapter=${encodeURIComponent(idChapter)}`;
+
+    try {
+        let response = await fetch(url);
+
+        if (response.ok) {
+            let text = await response.text();
+            let json = JSON.parse(text);
+            console.log(json);
+        } else {
+            console.log(response.status)
+        }
+    } catch (error) {
+        console.log(error)
+    }   
 }
 
 async function GetOptions(idChapter) {
@@ -94,29 +112,41 @@ function SetTags(info) {
 
 function SetFinal() {
     const end = document.createElement("button")
+    end.className = "bg-light-card dark:bg-dark-card rounded-card shadow-light dark:shadow-dark p-6 mb-6 text-primary"
     end.onclick = () => window.location.href = "./home.php"
     end.innerHTML = "Fine"
 
-    divOptions.appendChild(end)
+    document.getElementById("options").appendChild(end)
 }
 
 function CreateOptions(options) {
     for (let i = 0; i < options.length; i++) {
         const option = options[i]
         const divOption = CreateOption(option)
-        divOptions.appendChild(divOption)
+        document.getElementById("options").appendChild(divOption)
     }
 }
 
 function CreateOption(option) {
-    const div = document.createElement("div")
-    div.className = "option bg-white rounded-xl shadow-md p-4 cursor-pointer hover:bg-blue-100 transition"
-    div.onclick = () => GetChapter(option.IDNextChapter)
+    const btn = document.createElement("button");
+    btn.className = "bg-light-card dark:bg-dark-card rounded-card shadow-light dark:shadow-dark p-6 mb-6";
+    btn.onclick = () => GetChapter(option.IDNextChapter);
+        
+    const div = document.createElement("div");
+    div.className = "flex items-center";
+        
+    const span = document.createElement("span");
+    span.className = "mr-2 opacity-0 group-hover:opacity-100 transition-opacity";
+    span.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+    </svg>`;
+        
+    const textSpan = document.createElement("span");
+    textSpan.className = "text-primary";
+    textSpan.textContent = option.description;
 
-    const description = document.createElement("p")
-    description.innerHTML = option.description
-    description.className = "text-gray-800 text-lg font-medium"
-    div.appendChild(description)
-
-    return div
+    div.appendChild(span);
+    div.appendChild(textSpan);
+    btn.appendChild(div);
+    return btn
 }

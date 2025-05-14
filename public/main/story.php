@@ -1,5 +1,4 @@
 <?php
-
 /**
  * This page allows to view all the information of a story, such as its title, its description and a related image
  * Then, he can push the button to play the story
@@ -32,47 +31,60 @@
 
         Eventually there would be also some other objects in order to make the graphic better
     -->
-
-    <input type="hidden" id="idStory" value="<?php echo $_GET["idStory"] ?>">
-    <input type="hidden" id="firstChapter">
-
-    <!-- Navbar semplice o include se ne hai una -->
-    <nav class="bg-white/80 backdrop-blur-md sticky top-0 left-0 right-0 z-50 shadow-sm">
-        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
-            <span class="text-2xl font-bold text-gray-900">FateBound</span>
-        </div>
-    </nav>
-
-    <main class="container mx-auto px-6 py-10">
-        <div class="flex flex-row flex-wrap gap-8 items-start">
-
-            <!-- Immagine fissa -->
-            <div style="width: 400px; height: 300px;" class="flex-shrink-0">
-                <img
-                    src=""
-                    id="image"
-                    alt="Immagine della storia"
-                    class="w-full h-full object-cover rounded-xl shadow-md" />
+    <?php 
+        if (isset($_GET["idStory"]) && !empty($_GET["idStory"])) {
+            $id = $_GET["idStory"];
+            echo "
+                <input type='hidden' value='$id' id='idStory'>
+            ";
+        } 
+    ?>
+    <div class="min-h-[calc(100vh-140px)] flex items-center justify-center py-12 px-4">
+        <div class="w-full max-w-2xl bg-light-card dark:bg-dark-card rounded-card shadow-light dark:shadow-dark p-8 transition-all hover-lift">
+            <div class="flex flex-col md:flex-row gap-6">
+                <!-- Story Image -->
+                <div class="w-full md:w-1/3">
+                    <div 
+                    class="rounded-card flex items-center justify-center overflow-hidden bg-light-border dark:bg-dark-border w-30 h-30" 
+                    id="story-image">
+                        <img id="image" alt="Story Cover" class="max-w-full max-h-full object-contain p-2">
+                    </div>
+                </div>
+                
+                <!-- Story Details -->
+                <div class="w-full md:w-2/3">
+                    <h1 id="title" class="text-2xl font-bold mb-4"></h1>
+                    
+                    <p id="description" class="text-light-text-secondary dark:text-dark-text-secondary mb-6">
+                        
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-4 mb-6">
+                        <div class="bg-primary/10 rounded-lg px-3 py-1.5">
+                            <span id="chapters" class="text-sm font-medium"></span>
+                        </div>
+                        <div class="bg-primary/10 rounded-lg px-3 py-1.5">
+                            <span id="endings" class="text-sm font-medium"></span>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-col sm:flex-row gap-3 mt-8">
+                        <button 
+                            onclick="Play()" 
+                            class="py-2 px-6 rounded-button bg-primary text-white hover:bg-primary-dark transition-colors">
+                            Inizia Storia
+                        </button>
+                        <a
+                            href="./home.php"
+                            class="py-2 px-4 rounded-button border border-light-border dark:border-dark-border hover:bg-light-border dark:hover:bg-dark-border transition-colors"
+                            >Home
+                        </a>
+                    </div>
+                    
+                    <input type="hidden" id="firstChapter" value="">
+                </div>
             </div>
-
-            <!-- Dettagli della storia -->
-            <div class="flex-1 min-w-[250px]">
-                <h1 id="title" class="text-3xl font-bold text-gray-900 mb-4">
-                </h1>
-                <p id="description" class="text-gray-700 mb-6">
-                </p>
-                <p id="chapters" class="text-sm text-gray-600"></p>
-                <p id="endings" class="text-sm text-gray-600"></p>
-
-                <button
-                    id="game"
-                    onclick="Play()"
-                    class="bg-custom-purple-accent hover:bg-opacity-90 text-white px-6 py-3 rounded-lg font-medium transition-colors shadow-md hover:shadow-lg mb-4">
-                    Gioca
-                </button>
-            </div>
-
         </div>
-    </main>
+    </div>
 </body>
 </html>

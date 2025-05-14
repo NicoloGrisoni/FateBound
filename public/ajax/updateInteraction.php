@@ -13,20 +13,20 @@
     }
 
     $information = [];
-    if (!isset($_SESSION["IDUser"]) || !isset($_SESSION["authToken"])) {
+    if (!isset($_SESSION["idUser"])) {
         $information["status"] = "Access problem";
         $information["message"] = "Cannot access, missing authorization";
         echo json_encode($information);
     }
 
-    if (!isset($_GET["IDChapter"])) {
+    if (!isset($_GET["idChapter"])) {
         $information["status"] = "Information problem";
         $information["message"] = "Missing information about the chapter: ID missing";
         echo json_encode($information);
     }
 
     $db = Database::GetInstance();
-    $update = $db->UpdateInteractionWithStory($_SESSION["IDUser"], $_GET["IDChapter"]);
+    $update = $db->UpdateInteractionWithStory($_SESSION["idUser"], $_GET["idChapter"]);
     if ($update) {
         $information["status"] = "Success";
     } else {

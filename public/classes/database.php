@@ -123,16 +123,6 @@
             return $stmt->execute();
         }
 
-        //Update user's password 
-        public function UpdatePassword($userId, $newPassword) {
-            //REMEMBER: verify the type of the variable passed to the function
-            $query = "UPDATE Users SET password=? WHERE ID=?;";
-            $stmt = $this->conn->prepare($query);
-            $stmt->bind_param("si", $newPassword, $userId);
-
-            return $stmt->execute();
-        }
-
         //Update user's profile picture 
         public function UpdateProfilePicture($userId, $newProfilePictureName) {
             //REMEMBER: verify the type of the variable passed to the function
@@ -146,7 +136,7 @@
         //Update user's username 
         public function DeleteProfilePicture($userId) {
             //REMEMBER: verify the type of the variable passed to the function
-            $query = "UPDATE Users SET profile_picture=NULL WHERE ID=?;";
+            $query = "UPDATE Users SET profile_picture='default.png' WHERE ID=?;";
             $stmt = $this->conn->prepare($query);
             $stmt->bind_param("i", $userId);
 
@@ -345,36 +335,39 @@
 
         //Update the interaction made by a user with a story
         public function UpdateInteractionWithStory($idUser, $newChapterInteracted) {
-            $query = "UPDATE ChaptersInteracted SET chapter=?, interaction_date=NOW() WHERE user=?";
+            $query = "INSERT INTO ChaptersInteracted (user, chapter, interaction_date)
+            VALUES (?, ?, NOW())";
             $stmt = $this->conn->prepare($query);
-            $stmt->bind_param("ii", $newChapterInteracted, $idUser);
+            $stmt->bind_param("ii", $idUser, $newChapterInteracted);
             
             return $stmt->execute();
         }
 
         //Last interaction made by a user with a story
-        public function GetInteractionWithStory($idUser, $idStory) {
-            $query = "SELECT * FROM ChaptersInteracted WHERE user=? AND chapter IN (
-                SELECT * FROM Chapters WHERE story=?
-            )";
+        public function GetLastInteractionByUser($idUser) {
+            $query = "SELECT * FROM ChaptersInteracted WHERE user=? LIMIT 5;";
             $stmt = $this->conn->prepare($query);
-            $stmt->bind_param("ii", $idUser, $idStory);
+            $stmt->bind_param("i", $idUser);
             $stmt->execute();
 
             $result = $stmt->get_result();
-            if (!$result) {
+            if ($result === false) {
                 return null;
             } else {
-                if ($result->num_rows == 1) {
-                    $row = $result->fetch_assoc();
-                    $interaction = new Interaction(
-                        $row["ID"],
-                        $row["user"],
-                        $row["chapter"],
-                        $row["interaction_date"]
-                    );
+                if ($result->num_rows > 0) {
+                    $interactions = [];
+                    while ($row = $result->fetch_assoc()) {
+                        $interaction = new Interaction(
+                            $row["ID"],
+                            $row["user"],
+                            $row["chapter"],
+                            $row["interaction_date"]
+                        );
 
-                    return $interaction;
+                        $interactions[] = $interaction;
+                    }
+
+                    return $interactions;
                 } else {
                     return null;
                 }

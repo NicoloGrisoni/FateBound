@@ -35,12 +35,12 @@ function SetTags(info) {
     document.getElementById("chapters").innerHTML = "Capitoli:" + info.chapters.length
     document.getElementById("endings").innerHTML = "Finali: " + info.finals
     document.getElementById("firstChapter").value = info.chapters[0].ID
-    GetImgStory(info["story"].title)
+    GetImgStory(info["story"].title + info["story"].description)
 }
 
-async function GetImgStory(title) {
+async function GetImgStory(search) {
     const UnsplashApiKey = "Y033JaPjRjSuKxiNB4mTmWq_RWcW7-65ETq7lZ9sotE";
-    const unsplashUrl = `https://api.unsplash.com/search/photos?query=${encodeURIComponent(title)}&per_page=1&order_by=relevant&lang=it`;
+    const unsplashUrl = `https://api.unsplash.com/search/photos?query=${encodeURIComponent(search)}&per_page=1&order_by=relevant&lang=it`;
 
     const responseImage = await fetch(unsplashUrl, {
         headers: {
@@ -57,7 +57,7 @@ async function GetImgStory(title) {
             const imageUrl = dataImage.results[0].urls.small;
             document.getElementById("image").src = imageUrl;
         } else {
-            console.warn("Nessuna immagine trovata per:", search);
+            console.log("Nessuna immagine trovata per:", search);
         }
     }
 }

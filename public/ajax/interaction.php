@@ -11,23 +11,17 @@
     }
 
     $information = [];
-    if (!isset($_SESSION["userId"]) || !isset($_SESSION["authToken"])) {
+    if (!isset($_SESSION["idUser"])) {
         $information["status"] = "Access problem";
         $information["message"] = "Cannot access, missing authorization";
         echo json_encode($information);
     }
 
-    if (!isset($_GET["IDStory"])) {
-        $information["status"] = "Information problem";
-        $information["message"] = "Missing information about the story: ID not passed";
-        echo json_encode($information);
-    }
-
     $db = Database::GetInstance();
-    $interaction = $db->GetInteractionWithStory($_SESSION["IDUser"], $_GET["IDStory"]);
-    if (!is_null($interaction)) {
+    $interactions = $db->GetLastInteractionByUser($_SESSION["idUser"]);
+    if (!is_null($interactions)) {
         $information["status"] = "Success";
-        $information["interaction"] = $interaction;
+        $information["interactions"] = $interactions;
     } else {
         $information["status"] = "Failed";
         $information["message"] = "Problem during the execution of the operation requested";
