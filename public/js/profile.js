@@ -21,7 +21,7 @@ async function ViewProfileInformation() {
 
             user = json;
             SetTags(json);
-            GetInteractions(json["user"].ID);
+            //GetInteractions(json["user"].ID);
         } else {
         console.log(response.status);
         }
@@ -79,7 +79,13 @@ async function GetInteractionStory(interaction, element) {
 }
 
 function SetTags(info) {
-    document.getElementById("username").value = info["user"].username;
+    const username = document.getElementById("username");
+    if (username.tagName.toLowerCase() === 'input') {
+        username.value = info["user"].username;
+    } else {
+        username.innerHTML = info["user"].username;
+    }
+    
     document.getElementById("profile-pic").src = `../images/${info["user"].profile_picture}`;
 }
 

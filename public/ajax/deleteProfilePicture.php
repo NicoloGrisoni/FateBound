@@ -18,7 +18,7 @@
     }
 
     $db = Database::GetInstance();
-    $delete = $db->DeleteProfilePicture($_SESSION["IDUser"]);
+    $delete = $db->DeleteProfilePicture($_SESSION["idUser"]);
     if ($delete) {
         $information["status"] = "Success";
     } else {

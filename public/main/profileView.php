@@ -49,7 +49,7 @@
                 </div>
                 
                 <!-- Username - Larger and centered -->
-                <h2 class="text-3xl font-bold mb-8 text-center" id="username">nicog</h2>
+                <h2 class="text-3xl font-bold mb-8 text-center" id="username"></h2>
                 
                 <!-- Buttons - Centered horizontally -->
                 <div class="flex justify-center gap-4 w-full">

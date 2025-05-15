@@ -5,7 +5,7 @@ Query MySQL database (l'ho perso una volta, scrivo qui tutte le query per rifarl
         username varchar(50) not null,
         password char(32) not null,
         type varchar(20) not null,
-        profile_picture varchar(100),
+        profile_picture varchar(100) default 'default.png',
 
         PRIMARY KEY(ID)
     );

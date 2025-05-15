@@ -39,6 +39,7 @@
         private $conn;
         private function __construct() {
             $this->conn = new mysqli("localhost", "root", "", "fatebound");
+            $this->conn->set_charset("utf8mb4");
         }
 
         //LOGIN - REGISTRATION Section
